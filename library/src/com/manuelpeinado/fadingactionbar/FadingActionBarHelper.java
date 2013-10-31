@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.view.MotionEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.MeasureSpec;
@@ -206,6 +207,12 @@ public class FadingActionBarHelper {
 
         mMarginView = new View(listView.getContext());
         mMarginView.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT, 0));
+        mMarginView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return mHeaderView.onTouchEvent(motionEvent);
+            }
+        });
         listView.addHeaderView(mMarginView, null, false);
 
         // Make the background as high as the screen so that it fills regardless of the amount of scroll. 
@@ -259,7 +266,7 @@ public class FadingActionBarHelper {
         float damping = mUseParallax ? 0.5f : 1.0f;
         int dampedScroll = (int) (scrollPosition * damping);
         int offset = mLastDampedScroll - dampedScroll;
-        mHeaderContainer.offsetTopAndBottom(offset);
+        //  mHeaderContainer.offsetTopAndBottom(offset); BUGGED
 
         if (mListViewBackgroundView != null) {
             offset = mLastScrollPosition - scrollPosition;
