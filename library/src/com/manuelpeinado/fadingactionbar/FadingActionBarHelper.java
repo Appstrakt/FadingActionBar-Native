@@ -15,8 +15,6 @@
  */
 package com.manuelpeinado.fadingactionbar;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -32,6 +30,10 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+
+
 
 import com.cyrilmottier.android.translucentactionbar.NotifyingScrollView;
 
@@ -144,7 +146,7 @@ public class FadingActionBarHelper {
         return root;
     }
 
-    public void initActionBar(Activity activity) {
+    public void initActionBar(ActionBarActivity activity) {
         mActionBar = getActionBar(activity);
         if (mActionBarBackgroundDrawable == null) {
             mActionBarBackgroundDrawable = activity.getResources().getDrawable(mActionBarBackgroundResId);
@@ -156,8 +158,8 @@ public class FadingActionBarHelper {
         mActionBarBackgroundDrawable.setAlpha(0);
     }
 
-    protected ActionBar getActionBar(Activity activity) {
-        return activity.getActionBar();
+    protected ActionBar getActionBar(ActionBarActivity activity) {
+        return activity.getSupportActionBar();
     }
 
     private Drawable.Callback mDrawableCallback = new Drawable.Callback() {
