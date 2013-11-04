@@ -34,7 +34,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 
 
-
 import com.cyrilmottier.android.translucentactionbar.NotifyingScrollView;
 
 public class FadingActionBarHelper {
@@ -155,6 +154,7 @@ public class FadingActionBarHelper {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN) {
             mActionBarBackgroundDrawable.setCallback(mDrawableCallback);
         }
+        getActionBar(activity).setBackgroundDrawable(mActionBarBackgroundDrawable);
         mActionBarBackgroundDrawable.setAlpha(0);
     }
 
