@@ -215,6 +215,12 @@ public class FadingActionBarHelper {
                 return mHeaderView.onTouchEvent(motionEvent);
             }
         });
+        mMarginView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mHeaderView.performClick();
+            }
+        });
         listView.addHeaderView(mMarginView, null, false);
 
         // Make the background as high as the screen so that it fills regardless of the amount of scroll. 
